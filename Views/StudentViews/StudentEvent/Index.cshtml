@@ -1,0 +1,59 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Event>
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    var StudentPrn = ViewBag.Prn;
+}
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-12">
+            <h2 class="text-primary fw-bold">
+                Upcoming Events
+            </h2>
+        </div>
+    </div>
+
+<style>
+    /* Style the scrollbar */
+    .container::-webkit-scrollbar {
+        width: 3px; /* Set the width of the scrollbar */
+        background-color: #343a40; /* Set background color of the scrollbar track */
+    }
+
+    /* Handle */
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d; /* Set color of the scrollbar handle */
+        border-radius: 10px; /* Add some border radius to make it round */
+    }
+</style>
+
+<div class="container" style="height: 600px; overflow-y: auto; overflow-x: hidden;">
+        @foreach (var obj in Model)
+        {
+            <div class="row mb-1">
+                <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                     <div class="row">
+                        <div class="row">
+                            <p class="text-primary fw-bold fs-4"><strong class="text-success">Title : </strong>@obj.EventName</p>
+                        </div>
+                        <div class="row">
+                                <p class="text-white rounded-2">@obj.Description</p>
+                        </div>
+                        <div class="row">
+                                    <p class="text-white rounded-2"><i class="bi bi-calendar3 text-info"></i> @obj.EventDate</p>
+                        </div>
+                        <div class="row">
+                                    <p class="text-white rounded-2"><i class="bi bi-geo-alt text-danger"></i> @obj.EventLocation</p>
+                        </div>
+                        <div class="row">
+                                <p class="text-muted">
+                                    <strong> Posted by : </strong>@obj.FacultyId
+                                </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+</div>
+</div>
+

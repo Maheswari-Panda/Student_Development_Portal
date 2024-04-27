@@ -1,0 +1,31 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Problem>
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    var StudentPrn = ViewBag.Prn;
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-12">
+            <h2 class="text-primary fw-bold">
+                Problem List
+            </h2>
+        </div>
+    </div>
+
+    @foreach (var obj in Model)
+    {
+        <div class="row py-3 m-2 rounded-2 bg-dark d-flex align-item-center justify-content-between">
+            <div class="col-md-8 text-light">
+                <p>@obj.Statement</p>
+            </div>
+            <div class="col-md-2">
+                <p>@obj.Level</p>
+            </div>
+            <div class="col-md-2">
+                <a asp-controller="StudentProblem" asp-action="SolveProblem" asp-route-Prn="@StudentPrn" 
+                asp-route-ProblemId="@obj.ProblemId" class="btn btn-primary">Solve Problem</a>
+            </div>
+        </div>
+    }
+</div>

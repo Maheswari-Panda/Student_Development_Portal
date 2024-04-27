@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+
+@model StudentDevelopmentPortal.Models.AdminModels.Student
+
+<h1 class="text-center mt-1"> <i class="bi bi-emoji-smile"></i> Student List</h1>
+
+<div class="container mt-5">
+    <div class="row">
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="FS BE-I" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none" >
+        <div class="card text-light bg-success mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">FS BE-I</h5>
+                    <p class="card-text mb-0">Total Students: @ViewData["FSBEI_Students"]</p> 
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="FS BE-II" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-white bg-warning mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">FS BE-II</h5> 
+                    <p class="card-text mb-0">Total Students: @ViewData["FSBEII_Students"]</p> 
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="FS BE-III" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-white bg-danger mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">FS BE-III</h5> 
+                    <p class="card-text mb-0">Total Students: @ViewData["FSBEIII_Students"]</p> <!-- Added fw-bold for bold text -->
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a  asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="FS BE-IV" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-white bg-primary mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">FS BE-IV</h5>
+                    <p class="card-text mb-0">Total Students: @ViewData["FSBEIV_Students"]</p>  <!-- Added fw-bold for bold text -->
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="SS BE-I" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-white bg-info mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">SS BE-I</h5>
+                    <p class="card-text mb-0">Total Students: @ViewData["SSBEI_Students"]</p>  
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="SS BE-II" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-white bg-secondary mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">SS BE-II</h5>
+                    <p class="card-text mb-0">Total Students: @ViewData["SSBEII_Students"]</p>  <!-- Added fw-bold for bold text -->
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="SS BE-III" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-light bg-muted mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">SS BE-III</h5> 
+                    <p class="card-text mb-0">Total Students: @ViewData["SSBEIII_Students"]</p> 
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+<div class="col-md-3">
+    <a asp-controller="FacultyStudent" asp-action="getStudents" asp-route-Program="SS BE-IV" asp-route-FacultyId="@FacultyId" class="card-link text-decoration-none">
+        <div class="card text-dark bg-light mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">SS BE-IV</h5> 
+                    <p class="card-text mb-0">Total Students: @ViewData["SSBEIV_Students"]</p> 
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i>
+            </div>
+        </div>
+    </a>
+</div>
+
+    </div>
+</div>

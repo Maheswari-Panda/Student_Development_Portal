@@ -1,0 +1,60 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.Event
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary fw-bold">Edit Event</h2>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="EventName" class="p-0"></label>
+            <input asp-for="EventName" type="text" class="form-control"/>
+            <span asp-validation-for="EventName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="Description" class="p-0"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="EventDate" class="p-0"></label>
+            <input asp-for="EventDate" type="date" class="form-control"/>
+            <span asp-validation-for="EventDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="EventLocation" class="p-0"></label>
+            <input asp-for="EventLocation" type="text" class="form-control"/>
+            <span asp-validation-for="EventLocation" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="FacultyId" class="p-0">Faculty</label>
+            <select asp-for="FacultyId" class="form-control">
+                <option value="">Select Faculty</option>
+                @foreach (var faculty in ViewBag.Faculties)
+                {
+                            <option value="@faculty.FacultyId">@faculty.FullName</option>
+                }
+            </select>
+            <span asp-validation-for="FacultyId" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Event" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+                        <partial name="_ValidationScriptsPartial" />
+    }
+}

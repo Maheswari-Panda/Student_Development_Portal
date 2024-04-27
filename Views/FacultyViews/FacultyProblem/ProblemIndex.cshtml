@@ -1,0 +1,131 @@
+﻿@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Problem List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="FacultyProblem" asp-action="Create" asp-route-FacultyId="@FacultyId" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Problem
+            </a>
+        </div>
+    </div>
+</div>
+<style>
+    /* Style the scrollbar */
+    .container::-webkit-scrollbar {
+        width: 3px; /* Set the width of the scrollbar */
+        background-color: #343a40; /* Set background color of the scrollbar track */
+    }
+
+    /* Handle */
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d; /* Set color of the scrollbar handle */
+        border-radius: 10px; /* Add some border radius to make it round */
+    }
+</style>
+<div class="container" style="height: 590px; overflow-y: auto; overflow-x: hidden;">
+    <div class="col-md-12 m-1 mt-3 p-1 bg-dark rounded-2">
+                    <div class="row d-flex justify-content-between align-item-center">
+                        <div class="col-md-2">
+                            <h5 class="text-white">ProblemId</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="text-white">Problem Statement</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Level</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Details</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="text-white">Actions</h5>
+                        </div>
+                    </div>
+    </div>
+    @if (ViewBag.AssignedProblems != null)
+    {
+        @foreach (var obj in ViewBag.AssignedProblems)
+        {
+                                           <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                                            <div class="row mb-3 d-flex justify-content-between align-item-center">
+                                                <div class="col-md-2">
+                                                    <h5 class="text-white">@obj.ProblemId</h5>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h5 class="text-white">@obj.Statement</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h5 class="text-white">@obj.Level</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                     <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#_@obj.ProblemId" >Details</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                     <div class="btn-group" role="group">
+
+                                                        <a asp-controller="FacultyProblem" asp-action="ViewSubmissions" asp-route-ProblemId="@obj.ProblemId" class="btn btn-info">
+                                                            <i class="bi bi-eye"></i> View
+                                                        </a>
+                                                        <a asp-controller="FacultyProblem" asp-action="Edit" asp-route-ProblemId="@obj.ProblemId" class="btn btn-primary mx-1">
+                                                            <i class="bi bi-pencil-square"></i> Edit
+                                                        </a>
+                                                        <a asp-controller="FacultyProblem" asp-action="Delete" asp-route-ProblemId="@obj.ProblemId" class="btn btn-danger">
+                                                            <i class="bi bi-trash"></i> Remove
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row collapse text-light" id="_@obj.ProblemId">
+                                                    <hr />
+                                                <div class="row">
+                                                    <p class="text-white"><strong class="text-success">Description:</strong> @obj.Description</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="text-white"><strong class="text-success">Input :</strong> @obj.Inputs</p>
+                                                </div>
+
+                                                <div class="row">
+                                                     <p class="text-white"><strong class="text-success">Output :</strong> @obj.Outputs</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="text-white"><strong class="text-success">Time Complexcity :</strong> @obj.TimeComplexity</p>
+                                                </div>
+
+                                                <div class="row">
+                                                     <p class="text-white"><strong class="text-success">Space Complexcity :</strong> @obj.SpaceComplexity</p>
+                                                </div>
+
+                                                <div class="row">
+                                                     <p class="text-white"><strong class="text-success">Hint :</strong> @obj.Hint</p>
+                                                </div>
+                                                <div class="row">
+                                                     <p class="text-white"><strong class="text-success">Solution :</strong> @obj.Solution</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="text-white"><strong class="text-info">Course Id :</strong> @ViewBag.CourseName</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="text-white"><strong class="text-primary">Assigned By :</strong> @ViewBag.FacultyName</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+        }
+    }
+    else
+    {
+                <div class="row">
+                    <div class="col-auto">
+                        <h4 class="text-muted fw-bold">No Problems Right Now</h4>
+                    </div>
+                </div>
+    }

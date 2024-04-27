@@ -1,0 +1,78 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.Course
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary fw-bold">Edit Course</h2>
+			</hr>
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+		<div class="mb-3 p-1">
+			<label asp-for="CourseId" class="p-0"></label>
+			<input asp-for="CourseId" type="text" class="form-control" readonly/>
+			<span asp-validation-for="CourseId" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="CourseName" class="p-0"></label>
+			<input asp-for="CourseName" type="text" class="form-control"/>
+			<span asp-validation-for="CourseName" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="CourseDescription" class="p-0"></label>
+			<textarea asp-for="CourseDescription" class="form-control"></textarea>
+			<span asp-validation-for="CourseDescription" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 p-1">
+			<label asp-for="MaterialLink" class="p-0"></label>
+			<input asp-for="MaterialLink" type="text" class="form-control"/>
+			<span asp-validation-for="MaterialLink" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="IsPractical" class="p-0"></label>
+			<select asp-for="IsPractical" class="form-control">
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+			</select>
+			<span asp-validation-for="IsPractical" class="text-danger"></span>	
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="TotalMarks" class="p-0"></label>
+			<input asp-for="TotalMarks" type="text" class="form-control"/>
+			<span asp-validation-for="TotalMarks" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 p-1">
+			<label asp-for="Program" class="p-0"></label>
+			<select asp-for="Program" class="form-control">
+				<option value="">Please select</option>
+				<option value="FS BE-I">FS BE-I</option>
+				<option value="SS BE-I">SS BE-I</option>
+				<option value="FS BE-II">FS BE-II</option>
+				<option value="SS BE-II">SS BE-II</option>
+				<option value="FS BE-III">FS BE-III</option>
+				<option value="SS BE-III">SS BE-III</option>
+				<option value="FS BE-IV">FS BE-IV</option>
+				<option value="SS BE-IV">SS BE-IV</option>
+			</select>
+			<span asp-validation-for="Program" class="text-danger"></span>
+		</div>
+
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary form-control">Update</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Course" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@*for client site validation (validate without submit button) we need to use js script in create.cshtml *@
+@section Scripts {
+	@{
+				<partial name="_ValidationScriptsPartial"/>
+	}
+}

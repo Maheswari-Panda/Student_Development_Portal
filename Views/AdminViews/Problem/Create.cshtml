@@ -1,0 +1,103 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.Problem
+
+<form method="post" style="height: 730px; overflow-y: auto;">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary fw-bold">Add Problem</h2>
+            </hr>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="ProblemId" class="p-0"></label>
+            <input asp-for="ProblemId" type="text" class="form-control"/>
+            <span asp-validation-for="ProblemId" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Statement" class="p-0">Problem Statement</label>
+            <textarea asp-for="Statement" class="form-control"></textarea>
+            <span asp-validation-for="Statement" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Description" class="p-0">Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+    <label asp-for="Inputs" class="p-0">Inputs</label>
+    <textarea asp-for="Inputs" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Inputs" class="text-danger"></span>
+</div>
+
+<div class="mb-3 p-1">
+    <label asp-for="Outputs" class="p-0">Outputs</label>
+    <textarea asp-for="Outputs" class="form-control"></textarea>
+    <span asp-validation-for="Outputs" class="text-danger"></span>
+</div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="TimeComplexity" class="p-0">Time Complexity</label>
+            <input asp-for="TimeComplexity" type="text" class="form-control"/>
+            <span asp-validation-for="TimeComplexity" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="SpaceComplexity" class="p-0">Space Complexity</label>
+            <input asp-for="SpaceComplexity" type="text" class="form-control"/>
+            <span asp-validation-for="SpaceComplexity" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Level" class="p-0">Level</label>
+            <select asp-for="Level" class="form-control">
+                <option value="">Please select</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <span asp-validation-for="Level" class="text-danger"></span>    
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="Hint" class="p-0">Hint</label>
+            <textarea asp-for="Hint" class="form-control"></textarea>
+            <span asp-validation-for="Hint" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Solution" class="p-0">Solution</label>
+            <textarea asp-for="Solution" class="form-control"></textarea>
+            <span asp-validation-for="Solution" class="text-danger"></span>
+        </div>
+
+<div class="mb-3 p-1">
+    <label asp-for="CourseId" class="p-0">Course</label>
+    <select asp-for="CourseId" class="form-control">
+        <option value="">Select Course</option>
+                @foreach (var course in ViewBag.Courses)
+                {
+                <option value="@course.CourseId">@course.CourseName</option>
+                }
+    </select>
+    <span asp-validation-for="CourseId" class="text-danger"></span>
+</div>
+
+<div class="mb-3 p-1">
+    <label asp-for="FacultyId" class="p-0">Faculty</label>
+    <select asp-for="FacultyId" class="form-control">
+        <option value="">Select Faculty</option>
+                @foreach (var faculty in ViewBag.Faculties)
+                {
+                <option value="@faculty.FacultyId">@faculty.FullName</option>
+                }
+    </select>
+    <span asp-validation-for="FacultyId" class="text-danger"></span>
+</div>
+
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Problem" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,111 @@
+﻿@model StudentDevelopmentPortal.Models.StudentModels.StudentProblem
+@{
+    Layout = null;
+    var obj = ViewBag.ProblemObj;
+    var FacultyId = ViewBag.FacultyId;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/StudentDevelopmentPortal.styles.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <style>
+        .problem-container{
+            height: 84vh;
+        }
+        .editor-container {
+            height: 60vh; /* Adjust the height as needed */
+        }
+        .result-container {
+            height: 20vh; /* Adjust the height as needed */
+        }
+        #code,#notes{
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-3">
+       <div class="row d-flex justify-content-center">
+            <div class="btn btn-group col-2">
+                <button class="btn btn-primary m-1" onclick="runCode()"><i class="bi bi-play"></i> Run  </button>
+                <a class="btn btn-success m-1" asp-controller="FacultyProblem" asp-action="ViewSubmissions" asp-route-ProblemId="@obj.ProblemId" asp-route-FacultyId="@ViewBag.FacultyId">Go Back</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="problem-container border border-success rounded-2">
+                    <h6 class="bg-dark text-light rounded-2 p-1 m-0">Problem Details</h6>
+                    <div class="p-2">
+                        <p>@obj.Statement</p>
+                        <p>@obj.Description</p>
+                        <h6 class="text-light rounded-2 p-1 mt-3">Test Cases</h6>
+                            @if (obj.Inputs != null && obj.Outputs != null && obj.Inputs.Count > 0 && obj.Outputs.Count > 0)
+                            {
+                                @for (int i = 0; i < Math.Min(obj.Inputs.Count, obj.Outputs.Count); i++)
+                                {
+                                    if (i >= 2) { break; }
+                                        <!-- Stop at second testcase -->
+                                <div>
+                                    <h6>Test Case @(i + 1):</h6>
+                                    <p>Input: @obj.Inputs[i]</p>
+                                    <p>Output: @obj.Outputs[i]</p>
+                                </div>
+                                }
+                            }
+                        <p><strong>Time Complexcity :</strong> @obj.TimeComplexity</p>
+                        <p><strong>Space Complexcity : </strong>@obj.SpaceComplexity</p>
+                    </div>
+                </div>
+            </div>
+                <div class="col-md-6">
+                <div class="editor-container border border-success rounded-2">
+                    <h6 class="bg-dark text-light rounded-2 p-1 m-0">Write Your Code</h6>
+                    <textarea asp-for="Solution" id="code" class="mt-0 text-muted w-100 border border-success rounded-2" rows="17" style="resize: none;">@Model.Solution</textarea>
+                </div>
+                <div class="mt-1 result-container border border-success rounded-2">
+                    <h6 class="bg-dark text-light rounded-2 p-1 m-0">Result</h6>
+                    <iframe id="result" class="mt-0 text-muted w-100 border border-success rounded-2" style="height:100%;"></iframe>
+                </div>
+               </div>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function runCode() {
+            var code = document.getElementById('code').value;
+            var resultFrame = document.getElementById('result');
+            var resultFrameDoc = resultFrame.contentDocument || resultFrame.contentWindow.document;
+            resultFrameDoc.open();
+            resultFrameDoc.write(code);
+            resultFrameDoc.close();
+        }
+
+        function submitCode() {
+            var result = window.confirm("Are you sure you want to proceed?");
+
+            if (result) {
+                alert("You clicked Yes!");
+            } else {
+                alert("You clicked No or closed the dialog!");
+            }
+        }
+    </script>
+</body>
+</html>

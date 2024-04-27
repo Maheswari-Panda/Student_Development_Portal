@@ -1,0 +1,57 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Event>
+@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Event Details
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="FacultyEvent" asp-action="Create" asp-route-FacultyId="@FacultyId" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Event
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th>EventId</th>
+                <th>EventName</th>
+                <th>Description</th>
+                <th>EventDate</th>
+                <th>EventLocation</th>
+                <th>FacultyId</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                        <tr>
+                            <td>@obj.EventId</td>
+                            <td>@obj.EventName</td>
+                            <td>@obj.Description</td>
+                            <td>@obj.EventDate</td>
+                            <td>@obj.EventLocation</td>
+                            <td>@obj.FacultyId</td>
+                            <td class="text-center col-3">
+                                <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="FacultyEvent" asp-action="Edit" asp-route-EventId="@obj.EventId" class="btn btn-primary mx-2">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                        <a asp-controller="FacultyEvent" asp-action="Delete" asp-route-EventId="@obj.EventId" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Remove
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+            }
+        </tbody>
+    </table>
+</div>

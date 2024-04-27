@@ -1,0 +1,56 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Course>
+
+<div class="container">
+	<div class="row pt-4 pb-3">
+		<div class="col-6">
+			<h2 class="text-primary fw-bold">
+				Course List
+			</h2>
+		</div>
+		<div class="col-6 text-end">
+			<a asp-controller="Course" asp-action="Create" class="btn btn-primary">
+				<i class="bi bi-plus-circle"></i> Add New Course
+			</a>
+		</div>
+	</div>
+
+<table class="table table-bordered table-striped" id="myTable">
+	<thead>
+		<tr>
+			<th>CourseId</th>
+			<th>CourseName</th>
+			<th>Description</th>
+			<th>IsPractical</th>
+			<th>TotalMarks</th>
+			<th>Program</th>
+			<th class="text-center">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+			@foreach (var obj in Model)
+			{
+					<tr>
+						<td>@obj.CourseId</td>
+						<td>@obj.CourseName</td>
+						<td>@obj.CourseDescription</td>
+						<td>@obj.IsPractical</td>
+						<td>@obj.TotalMarks</td>
+						<td>@obj.Program</td>
+						<td class="text-center col-3">
+							<div class="w-75 btn-group" role="group">
+									<a asp-controller="Course" asp-action="Edit" asp-route-CourseId="@obj.CourseId" class="btn btn-primary mx-2">
+										<i class="bi bi-pencil-square"></i> Edit
+								</a>
+									<a asp-controller="Course" asp-action="Delete" asp-route-CourseId="@obj.CourseId" class="btn btn-danger">
+											<i class="bi bi-trash"></i> Remove
+								</a>
+							</div>
+						</td>
+					</tr>
+			}
+
+	</tbody>
+</table>
+
+
+</div>

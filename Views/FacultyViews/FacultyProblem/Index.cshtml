@@ -1,0 +1,50 @@
+﻿@model StudentDevelopmentPortal.Models.FacultyModels.FacultyCourse
+@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Your Courses
+            </h2>
+        </div>
+    </div>
+</div>
+<style>
+    .container::-webkit-scrollbar {
+        width: 3px; 
+        background-color: #343a40; 
+    }
+
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d;
+        border-radius: 10px;
+    }
+</style>
+<div class="container" style="height: 570px; overflow-y: auto; overflow-x: hidden;">
+    @if (ViewBag.AssignedCourses != null)
+    {
+        @foreach (var obj in ViewBag.AssignedCourses)
+        {
+                                   <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                                    <div class="row mb-3 d-flex justify-content-between align-item-center">
+                                        <div class="col-md-2">
+                                            <h5 class="text-light">@obj.CourseId</h5>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h5 class="text-light">@obj.CourseName</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                             <a class="btn btn-success" asp-controller="FacultyProblem" asp-action="ProblemIndex" asp-route-FacultyId="@FacultyId" asp-route-CourseId="@obj.CourseId">View Problems</a>
+                                        </div>
+                                    </div>
+                                   </div>
+        }
+    }
+    else
+    {
+                    <p>No assigned courses found.</p>
+    }
+</div>

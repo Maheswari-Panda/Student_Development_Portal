@@ -1,0 +1,42 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Student>
+@{
+	Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+	var FacultyId = ViewBag.FacultyId;
+}
+
+<div class="container">
+	<div class="row pt-4 pb-3">
+		<div class="col-6">
+			<h2 class="text-primary fw-bold">
+				Student List
+			</h2>
+		</div>
+	</div>
+
+<table class="table table-bordered table-striped" id="myTable">
+	<thead>
+		<tr>
+			<th>Prn</th>
+			<th>StudentName</th>
+			<th>Email</th>
+			<th>Contact</th>
+			<th>Program</th>
+		</tr>
+	</thead>
+	<tbody>
+			@foreach (var obj in Model)
+			{
+					<tr>
+						<td>@obj.Prn</td>
+						<td>@obj.FullName</td>
+						<td>@obj.Email</td>
+						<td>@obj.Contact</td>
+						<td>@obj.Program</td>
+					</tr>
+			}
+
+	</tbody>
+</table>
+
+
+</div>

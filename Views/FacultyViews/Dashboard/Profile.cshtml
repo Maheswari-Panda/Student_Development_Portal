@@ -1,0 +1,53 @@
+﻿@{
+	Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+}
+@model StudentDevelopmentPortal.Models.AdminModels.Faculty
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary fw-bold">My Profile</h2>
+			</hr>
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+		<div class="mb-3 p-1">
+			<label asp-for="FacultyId" class="p-0"></label>
+			<input asp-for="FacultyId" type="text" class="form-control" readonly/>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Password" class="p-0"></label>
+			<input asp-for="Password" type="text" class="form-control"/>
+			<span asp-validation-for="Password" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="FullName" class="p-0"></label>
+			<input asp-for="FullName" type="text" class="form-control"/>
+			<span asp-validation-for="FullName" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Email" class="p-0"></label>
+			<input asp-for="Email" type="email" class="form-control"/>
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Contact" class="p-0"></label>
+			<input asp-for="Contact" type="text" class="form-control"/>
+			<span asp-validation-for="Contact" class="text-danger"></span>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary form-control">Update</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="FacultyPage" asp-action="BackToIndex" asp-route-FacultyId="@Model.FacultyId" class="btn btn-secondary border form-control"> Cencel</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@*for client site validation (validate without submit button) we need to use js script in create.cshtml *@
+@section Scripts {
+	@{
+						<partial name="_ValidationScriptsPartial"/>
+	}
+}

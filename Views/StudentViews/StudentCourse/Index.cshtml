@@ -1,0 +1,104 @@
+﻿@model StudentDevelopmentPortal.Models.StudentModels.StudentCourse
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    var StudentPrn = ViewBag.Prn;
+}
+<form method="post">
+    <div class="row pb-2">
+        <div class="col-auto">
+            <h2 class="text-primary fw-bold">My Courses</h2>
+        </div>
+    </div>
+    <div class="form-group row d-flex align-items-center justify-content-center bg-dark m-2 p-2 rounded-2">
+        <div class="col-3">
+            <div class="input-group">
+                <span class="input-group-text bg-danger text-light">PRN</span>
+                <input asp-for="Prn" type="text" class="form-control" name="Prn" value="@StudentPrn">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group">
+                 <span class="input-group-text bg-info text-light">Course</span>
+                @if (ViewBag.Courses != null)
+                {
+                        <select asp-for="CourseId" class="form-control">
+                            <option value="">Select Course</option>
+                        @foreach (var course in ViewBag.Courses)
+                        {
+                        <option value="@course.CourseId">@course.CourseName</option>
+                        }
+                       </select>
+                }
+                else
+                {
+                        <select asp-for="CourseId" class="form-control" disabled>
+                                <option value="">Select Course</option>
+                        </select>
+                }
+            </div>
+           
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary form-control">Enroll</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<style>
+    /* Style the scrollbar */
+    .container::-webkit-scrollbar {
+        width: 3px; /* Set the width of the scrollbar */
+        background-color: #343a40; /* Set background color of the scrollbar track */
+    }
+
+    /* Handle */
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d; /* Set color of the scrollbar handle */
+        border-radius: 10px; /* Add some border radius to make it round */
+    }
+</style>
+<div class="container" style="height: 570px; overflow-y: auto; overflow-x: hidden;">
+    @if (ViewBag.EnrolledCourses != null)
+    {
+        @foreach (var obj in ViewBag.EnrolledCourses)
+        {
+           <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+            <div class="row mb-3 d-flex justify-content-between align-item-center">
+                <div class="col-md-2">
+                    <h5 class="text-light">@obj.CourseId</h5>
+                </div>
+                <div class="col-md-8">
+                    <h5 class="text-light">@obj.CourseName</h5>
+                </div>
+                <div class="col-md-2">
+                        <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#@obj.CourseId" >Details</button>
+                </div>
+            </div>
+                <div class="row collapse text-light" id="@obj.CourseId">
+                <div class="row">
+                    <p><strong>Description:</strong> @obj.CourseDescription</p>
+                </div>
+                <div class="row">
+                    <p><strong>Is Practical:</strong> @obj.IsPractical</p>
+                </div>
+                <div class="row">
+                    <p><strong>Total Marks:</strong> @obj.TotalMarks</p>
+                </div>
+                <div class="row">
+                    <p><strong>Program:</strong> @obj.Program</p>
+                </div>
+                    <div class="row">
+                                   <p><strong>Material link:</strong> <a class="text-link" target="_" href="@obj.MaterialLink">@obj.MaterialLink</a> </p>
+                    </div>
+            </div>
+        </div>
+
+        }
+    }
+    else
+    {
+        <p>No enrolled courses found.</p>
+    }
+</div>

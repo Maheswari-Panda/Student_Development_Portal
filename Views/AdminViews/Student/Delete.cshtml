@@ -1,0 +1,40 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.Student
+
+<form method="post">
+	<input asp-for="Prn" hidden />
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary fw-bold">Remove Student</h2>
+			</hr>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Prn" class="p-0"></label>
+			<input asp-for="Prn" type="text" class="form-control" readonly/>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="FullName" class="p-0"></label>
+			<input asp-for="FullName" type="text" class="form-control" readonly/>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Email" class="p-0"></label>
+			<input asp-for="Email" type="email" class="form-control" readonly/>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Contact" class="p-0"></label>
+			<input asp-for="Contact" type="text" class="form-control" readonly/>
+		</div>
+		<div class="mb-3 p-1">
+			<label asp-for="Program" class="p-0"></label>
+			<input asp-for="Program" type="text" class="form-control" readonly/>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-danger form-control">Remove</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Student" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+			</div>
+		</div>
+	</div>
+</form>

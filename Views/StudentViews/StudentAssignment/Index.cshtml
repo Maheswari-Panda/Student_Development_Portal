@@ -1,0 +1,193 @@
+﻿@model StudentDevelopmentPortal.Models.StudentModels.StudentAssignment
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    var StudentPrn = ViewBag.Prn;
+}
+
+    <div class="row pb-2">
+        <div class="col-auto">
+            <h2 class="text-primary fw-bold">My Assignments</h2>
+        </div>
+    </div>
+
+<style>
+    /* Style the scrollbar */
+    .container::-webkit-scrollbar {
+        width: 3px; 
+        background-color: #343a40; 
+    }
+
+    /* Handle */
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d; 
+        border-radius: 10px; 
+    }
+</style>
+<div class="container" style="height: 570px; overflow-y: auto; overflow-x: hidden;">
+    <div class="col-md-12 m-1 mt-3 p-1 bg-dark rounded-2">
+                    <div class="row d-flex justify-content-between align-item-center">
+                        <div class="col-md-2">
+                            <h5 class="text-white">Assigned Date</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-white">Assignment Name</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Assigned DueDate</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Details</h5>
+                        </div>
+                    </div>
+    </div>
+    @if (ViewBag.PendingAssignments!=null)
+    {
+        @foreach (var obj in ViewBag.PendingAssignments)
+        {
+                           <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                            <div class="row mb-3 d-flex justify-content-between align-item-center">
+                                <div class="col-md-2">
+                                    <h5 class="text-white">@obj.AssignedDate</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-white">@obj.AssignmentName</h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <h5 class="text-white">@obj.AssignedDueDate</h5>
+                                </div>
+                                <div class="col-md-2">
+                                     <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#_@obj.AssignmentId" >Details</button>
+                                </div>
+                            </div>
+                                <div class="row collapse text-light" id="_@obj.AssignmentId">
+                                <div class="row">
+                                    <p class="text-light"><strong>Description:</strong> @obj.Description</p>
+                                </div>
+                                <div class="row">
+                                    <p><strong class="text-success">Marks :</strong> @obj.TotalMarks</p>
+                                </div>
+                                <div class="row">
+                                    <p><strong class="text-info">Course Id :</strong> @obj.CourseId</p>
+                                </div>
+                                <div class="row">
+                                    <p><strong class="text-primary">Assigned By :</strong> @obj.FacultyId</p>
+                                </div>
+                                
+                    <form method="post">
+                                <div class="form-group row d-flex align-items-center justify-content-center bg-dark m-2 p-2 rounded-2">
+                                        <div class="col-10">
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-danger text-light">File Link</span>
+                                                 <input asp-for="Prn" type="hidden" value="@StudentPrn" />
+                                                 <input asp-for="AssignmentId" type="hidden" value="@obj.AssignmentId" />
+                                                <input asp-for="SolutionUrl" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="submit" class="btn btn-primary form-control">Submit Assignment</button>
+                                        </div>
+                                </div>
+                             </form>
+                            </div>
+                        </div>
+                 
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-auto">
+                <h4 class="text-muted fw-bold">No Assignments Right Now</h4>
+            </div>
+        </div>
+    }
+
+    <hr />
+    <div class="row">
+        <div class="col-auto">
+            <h4 class="text-muted fw-bold">Completed Assignments</h4>
+        </div>
+    </div>
+    <hr />
+    @if (ViewBag.CompletedAssignments != null)
+    {
+        @for (var i = 0; i < ViewBag.CompletedAssignments.Count; i++)
+        {
+            var obj = ViewBag.CompletedAssignments[i];
+            var studentMark = ViewBag.StudentMarks[i];
+            var status = "Assignment Returned";
+            if (studentMark == null)
+            {
+                status = "Unchecked";
+                studentMark = 0;
+            }
+
+            var studentFeedback = ViewBag.StudentFeedback[i];
+            if (studentFeedback == null)
+            {
+                studentFeedback = "No Feedback";
+            }
+
+                                   <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                                    <div class="row mb-3 d-flex justify-content-between align-item-center">
+                                        <div class="col-md-2">
+                                            <h5 class="text-white">@obj.AssignedDate</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5 class="text-white">@obj.AssignmentName</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="text-white">@obj.AssignedDueDate</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                             <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#_@obj.AssignmentId">Details</button>
+                                        </div>
+                                    </div>
+                                        <div class="row collapse text-light" id="_@obj.AssignmentId">
+                                        <div class="row">
+                                            <p class="text-light"><strong>Description:</strong> @obj.Description</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-danger">Status :</strong> @status</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-success">Marks :</strong> @studentMark/@obj.TotalMarks</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-warning">Feedback :</strong> @studentFeedback</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-info">Course Id :</strong> @obj.CourseId</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-primary">Assigned By :</strong> @obj.FacultyId</p>
+                                        </div>
+                            <form method="post">
+                                        <div class="form-group row d-flex align-items-center justify-content-center bg-dark m-2 p-2 rounded-2">
+                                                <div class="col-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-danger text-light">File Link</span>
+                                                         <input asp-for="Prn" type="hidden" value="@StudentPrn" />
+                                                         <input asp-for="AssignmentId" type="hidden" value="@obj.AssignmentId" />
+                                                         <input asp-for="SolutionUrl" type="text" class="form-control" placeholder="Want to submit again" >
+                                                </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <button type="submit" class="btn btn-primary form-control">Submit Again</button>
+                                                </div>
+                                        </div>
+                           </form>
+
+                                    </div>
+                                </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-auto">
+                <h4 class="text-muted fw-bold">Not yet</h4>
+            </div>
+        </div>
+    }
+</div>

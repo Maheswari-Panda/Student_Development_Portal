@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Assignment List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="FacultyAssignment" asp-action="Create" asp-route-FacultyId="@FacultyId" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Assignment
+            </a>
+        </div>
+    </div>
+</div>
+<style>
+    /* Style the scrollbar */
+    .container::-webkit-scrollbar {
+        width: 3px; /* Set the width of the scrollbar */
+        background-color: #343a40; /* Set background color of the scrollbar track */
+    }
+
+    /* Handle */
+    .container::-webkit-scrollbar-thumb {
+        background: #6c757d; /* Set color of the scrollbar handle */
+        border-radius: 10px; /* Add some border radius to make it round */
+    }
+</style>
+<div class="container" style="height: 590px; overflow-y: auto; overflow-x: hidden;">
+    <div class="col-md-12 m-1 mt-3 p-1 bg-dark rounded-2">
+                    <div class="row d-flex justify-content-between align-item-center">
+                        <div class="col-md-2">
+                            <h5 class="text-white">Assigned Date</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="text-white">Assignment Name</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Assigned DueDate</h5>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-white">Details</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="text-white">Actions</h5>
+                        </div>
+                    </div>
+    </div>
+    @if (ViewBag.AssignedAssignments != null)
+    {
+        @foreach (var obj in ViewBag.AssignedAssignments)
+        {
+                                   <div class="col-md-12 m-1 mt-3 p-3 bg-dark rounded-2">
+                                    <div class="row mb-3 d-flex justify-content-between align-item-center">
+                                        <div class="col-md-2">
+                                            <h5 class="text-white">@obj.AssignedDate</h5>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="text-white">@obj.AssignmentName</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="text-white">@obj.AssignedDueDate</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                             <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#_@obj.AssignmentId" >Details</button>
+                                        </div>
+                                        <div class="col-md-3">
+                                             <div class="btn-group" role="group">
+                                                 
+                                                <a asp-controller="FacultyAssignment" asp-action="ViewSubmissions" asp-route-AssignmentId="@obj.AssignmentId" class="btn btn-info">
+                                                    <i class="bi bi-eye"></i> View
+                                                </a>
+                                                <a asp-controller="FacultyAssignment" asp-action="Edit" asp-route-AssignmentId="@obj.AssignmentId" class="btn btn-primary mx-1">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                                <a asp-controller="FacultyAssignment" asp-action="Delete" asp-route-AssignmentId="@obj.AssignmentId" class="btn btn-danger">
+                                                    <i class="bi bi-trash"></i> Remove
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row collapse text-light" id="_@obj.AssignmentId">
+                                            <hr />
+                                        <div class="row">
+                                            <p class="text-white"><strong>Description:</strong> @obj.Description</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-success">Marks :</strong> @obj.TotalMarks</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-info">Course Id :</strong> @obj.CourseId</p>
+                                        </div>
+                                        <div class="row">
+                                            <p><strong class="text-primary">Assigned By :</strong> @ViewBag.FacultyName</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+        }
+    }
+    else
+    {
+            <div class="row">
+                <div class="col-auto">
+                    <h4 class="text-muted fw-bold">No Assignments Right Now</h4>
+                </div>
+            </div>
+    }

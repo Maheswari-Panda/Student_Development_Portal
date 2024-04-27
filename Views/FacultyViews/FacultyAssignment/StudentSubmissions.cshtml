@@ -1,0 +1,57 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Student>
+@{
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+    var FacultyId = ViewBag.FacultyId;
+}
+
+<div class="container">
+	<div class="row pt-4 pb-3">
+		<div class="col-6">
+			<h2 class="text-primary fw-bold">
+				Assignment Submissions
+			</h2>
+		</div>
+	</div>
+
+<table class="table table-bordered table-striped" id="myTable">
+	<thead>
+		<tr>
+			<th>Prn</th>
+			<th>StudentName</th>
+			<th>Program</th>
+			<th>Marks</th>
+			<th class="text-center">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                var student = Model[i];
+                var studentMark = ViewBag.StudentMarks[i];
+                if (studentMark == null)
+                {
+                    studentMark = 0;
+                }
+
+                <tr>
+                    <td>@student.Prn</td>
+                    <td>@student.FullName</td>
+                    <td>@student.Program</td>
+                    <td>
+                        @studentMark/10
+                    </td>
+                    <td class="text-center col-3">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="FacultyAssignment" asp-action="ViewAssignment" asp-route-Prn="@student.Prn" asp-route-AssignmentId="@ViewBag.AssignmentId" asp-route-FacultyId="@FacultyId" class="btn btn-success mx-2">
+                                <i class="bi bi-eye"></i> View Assignment
+                            </a>
+                        </div>
+                    </td>
+               </tr>
+            }
+
+	</tbody>
+</table>
+
+
+</div>

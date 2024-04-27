@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container mt-5">
+    <div class="row">
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Admin")" class="card-link text-decoration-none">
+        <div class="card text-dark bg-light mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Admins</h5> 
+                    <p class="card-text mb-0">Total Admins: @ViewData["NumberOfAdmins"]</p>
+
+                </div>
+                <i class="bi bi-person-check fs-2 fs-xl-3"></i>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Student")" class="card-link text-decoration-none">
+        <div class="card text-white bg-success mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Students</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Students: @ViewData["NumberOfStudents"]</p>
+
+                </div>
+                <i class="bi bi-people-fill fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Faculty")" class="card-link text-decoration-none">
+        <div class="card text-white bg-primary mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Faculties</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Faculties: @ViewData["NumberOfFaculty"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-person-workspace fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+        <!-- Add more grid boxes for other entities -->
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Course")" class="card-link text-decoration-none">
+        <div class="card text-white bg-info mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Courses</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Courses: @ViewData["NumberOfCourses"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-journal-code fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Problem")" class="card-link text-decoration-none">
+        <div class="card text-white bg-muted mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Problems</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Problems: @ViewData["NumberOfProblems"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-code-square fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Assignment")" class="card-link text-decoration-none">
+        <div class="card text-white bg-danger mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Assignments</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Assignments: @ViewData["NumberOfAssignments"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-journal-bookmark fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "JobReadiness")" class="card-link text-decoration-none">
+        <div class="card text-white bg-secondary mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">JobReadiness Contents</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Contents: @ViewData["NumberOfJobReadiness"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-graph-up-arrow fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-4">
+    <a href="@Url.Action("Index", "Event")" class="card-link text-decoration-none">
+        <div class="card text-light bg-warning mb-3" style="height: 10rem;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title fw-bold mb-0 fs-5">Events</h5> <!-- Added fw-bold for bold text -->
+                    <p class="card-text mb-0">Total Events: @ViewData["NumberOfEvents"]</p> <!-- Added mb-0 to remove margin -->
+                </div>
+                <i class="bi bi-calendar2-event fs-2 fs-xl-3"></i> <!-- Multi-user icon -->
+            </div>
+        </div>
+    </a>
+</div>
+
+    </div>
+</div>

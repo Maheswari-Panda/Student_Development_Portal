@@ -1,0 +1,70 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.Assignment
+
+<form method="post" style="height: 730px; overflow-y: auto;">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary fw-bold">Remove Assignment</h2>
+            <hr />
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="AssignmentId" class="p-0"></label>
+            <input asp-for="AssignmentId" type="text" class="form-control" readonly/>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="AssignmentName" class="p-0"></label>
+            <input asp-for="AssignmentName" class="form-control" readonly/>
+            <span asp-validation-for="AssignmentName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Description" class="p-0">Description</label>
+            <textarea asp-for="Description" class="form-control" readonly></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="AssignedDate" class="p-0">Assigned Date</label>
+            <input asp-for="AssignedDate" type="date" class="form-control" readonly />
+            <span asp-validation-for="AssignedDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="AssignedDueDate" class="p-0">Due Date</label>
+            <input asp-for="AssignedDueDate" type="date" class="form-control" readonly />
+            <span asp-validation-for="AssignedDueDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="TotalMarks" class="p-0">Total Marks</label>
+            <input asp-for="TotalMarks" type="number" class="form-control" readonly />
+            <span asp-validation-for="TotalMarks" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="CourseId" class="p-0">Course</label>
+            <select asp-for="CourseId" class="form-control" disabled>
+                <option value="">Select Course</option>
+                @foreach (var course in ViewBag.Courses)
+                {
+                                <option value="@course.CourseId">@course.CourseName</option>
+                }
+            </select>
+            <span asp-validation-for="CourseId" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="FacultyId" class="p-0">Faculty</label>
+            <select asp-for="FacultyId" class="form-control" disabled>
+                <option value="">Select Faculty</option>
+                @foreach (var faculty in ViewBag.Faculties)
+                {
+                                <option value="@faculty.FacultyId">@faculty.FullName</option>
+                }
+            </select>
+            <span asp-validation-for="FacultyId" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Remove</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Assignment" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.JobReadiness>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Job Readiness List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="JobReadiness" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Job Readiness
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th>QuestionId</th>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>FacultyId</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                    <tr>
+                        <td>@obj.QuestionId</td>
+                        <td>@obj.Type</td>
+                        <td>@obj.Question</td>
+                        <td>@obj.Answer</td>
+                        <td>@obj.FacultyId</td>
+                        <td class="text-center col-3">
+                            <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="JobReadiness" asp-action="Edit" asp-route-QuestionId="@obj.QuestionId" class="btn btn-primary mx-2">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                    <a asp-controller="JobReadiness" asp-action="Delete" asp-route-QuestionId="@obj.QuestionId" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i> Remove
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>

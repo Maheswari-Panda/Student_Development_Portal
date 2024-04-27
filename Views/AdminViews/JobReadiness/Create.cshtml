@@ -1,0 +1,66 @@
+﻿@model StudentDevelopmentPortal.Models.AdminModels.JobReadiness
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary fw-bold">Add Job Readiness Question</h2>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="QuestionId" class="p-0"></label>
+            <input asp-for="QuestionId" type="text" class="form-control"/>
+            <span asp-validation-for="QuestionId" class="text-danger"></span>
+        </div>
+
+       <div class="mb-3 p-1">
+    <label asp-for="Type" class="p-0"></label>
+    <select asp-for="Type" class="form-control">
+        <option value="">Select Type</option>
+        <option value="Apptitude">Apptitude</option>
+        <option value="Personal">Personal</option>
+        <option value="Technical">Technical</option>
+        <option value="Communication">Communication</option>
+        <!-- Add other options here -->
+    </select>
+    <span asp-validation-for="Type" class="text-danger"></span>
+</div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="Question" class="p-0"></label>
+            <textarea asp-for="Question" class="form-control"></textarea>
+            <span asp-validation-for="Question" class="text-danger"></span>
+        </div>
+        <div class="mb-3 p-1">
+            <label asp-for="Answer" class="p-0"></label>
+            <textarea asp-for="Answer" class="form-control"></textarea>
+            <span asp-validation-for="Answer" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 p-1">
+            <label asp-for="FacultyId" class="p-0">Faculty</label>
+            <select asp-for="FacultyId" class="form-control">
+                <option value="">Select Faculty</option>
+                    @foreach (var faculty in ViewBag.Faculties)
+                    {
+                           <option value="@faculty.FacultyId">@faculty.FullName</option>
+                    }
+            </select>
+            <span asp-validation-for="FacultyId" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Add</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="JobReadiness" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+                <partial name="_ValidationScriptsPartial" />
+    }
+}

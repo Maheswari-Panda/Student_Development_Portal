@@ -1,0 +1,58 @@
+﻿@model List<StudentDevelopmentPortal.Models.AdminModels.Assignment>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary fw-bold">
+                Assignment List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Assignment" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Assignment
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th>Assignment ID</th>
+                <th>Assignment Name</th>
+                <th>Description</th>
+                <th>Assigned Date</th>
+                <th>Due Date</th>
+                <th>Total Marks</th>
+                <th>Course ID</th>
+                <th>Faculty ID</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model)
+            {
+                    <tr>
+                        <td>@assignment.AssignmentId</td>
+                        <td>@assignment.AssignmentName</td>
+                        <td>@assignment.Description</td>
+                        <td>@assignment.AssignedDate</td>
+                        <td>@assignment.AssignedDueDate</td>
+                        <td>@assignment.TotalMarks</td>
+                        <td>@assignment.CourseId</td>
+                        <td>@assignment.FacultyId</td>
+                        <td class="text-center col-3">
+                            <div class="btn-group" role="group">
+                                    <a asp-controller="Assignment" asp-action="Edit" asp-route-AssignmentId="@assignment.AssignmentId" class="btn btn-primary mx-2">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                    <a asp-controller="Assignment" asp-action="Delete" asp-route-AssignmentId="@assignment.AssignmentId" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i> Remove
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

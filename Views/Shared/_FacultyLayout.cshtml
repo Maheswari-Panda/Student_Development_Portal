@@ -1,0 +1,114 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StudentDevelopmentPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StudentDevelopmentPortal.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+<style>
+    /* Style the scrollbar */
+    body::-webkit-scrollbar {
+        width: 3px; 
+        background-color: #343a40; 
+    }
+
+    /* Handle */
+    body::-webkit-scrollbar-thumb {
+        background: #6c757d; 
+        border-radius: 10px; 
+    }
+</style>
+</head>
+<body>
+    <div class="container d-flex align-item-center justify-content-between p-0 m-0" style="width: 100vw; height:100vh;">
+     <header>
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width:20vw; height: 100vh;">
+         <div class="container text-center">
+
+          <img src="https://msu-new-2023-ec2-ubuntu-unzip.s3.ap-south-1.amazonaws.com/asset/images/logo/MSU%20Logo10.png" width="100" height="100" />
+         </div>
+         <div class="container text-center">
+             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-5">Student Development Portal</span>
+            </a>
+         <div class="row text-center d-flex align-items-cente">FacultyId: @ViewBag.FacultyId</div>
+         </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" asp-area="" asp-controller="FacultyPage" asp-action="BackToIndex" asp-route-FacultyId="@ViewBag.FacultyId">
+                <i class="bi bi-speedometer2 px-2"></i> Dashboard
+            </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyStudent" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-person px-2"></i> Students
+           </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyCourse" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-journal-code px-2"></i> Courses
+           </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyProblem" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-code-square px-2"></i> Problems
+           </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyAssignment" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-journal-bookmark px-2"></i> Assignments
+           </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyJobReadiness" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-graph-up-arrow px-2"></i> JobReadiness
+           </a>
+          </li>
+          <li>
+           <a class="nav-link text-white" asp-area="" asp-controller="FacultyEvent" asp-action="Index" asp-route-FacultyId="@ViewBag.FacultyId">
+               <i class="bi bi-calendar2-event px-2"></i> Events
+           </a>
+          </li>
+
+        </ul>
+
+        <hr>
+           <div class="row">
+               <a asp-controller="Home" asp-action="LogOut" class="text-white" style="text-decoration:none;"> <i class="bi bi-upload px-2"></i> LogOut </a>
+           </div>
+      </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_Notification"/>
+                @RenderBody()
+        </main>
+    </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container text-center">
+            &copy; 2024 - StudentDevelopmentPortal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+
+<script>
+    let table = new DataTable('#myTable',{scrollY:500});
+</script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

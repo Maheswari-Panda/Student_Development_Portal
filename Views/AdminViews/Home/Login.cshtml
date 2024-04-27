@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StudentDevelopmentPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StudentDevelopmentPortal.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+             <img src="https://msu-new-2023-ec2-ubuntu-unzip.s3.ap-south-1.amazonaws.com/asset/images/logo/MSU%20Logo10.png" width="100" height="100" />
+             <h3 class="mt-2 text-light">The Maharaja SaiyajiRao University Of Baroda</h3>
+             <h5 class="mt-2">Faculty Of Technology and Egineering Of MSU Baroda</h5>
+        </div>
+
+        <div class="card mx-auto bg-dark p-3" style="max-width: 400px;">
+    <div class="card-body">
+        <form method="post">
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-light"><i class="bi bi-person-fill"></i></span>
+                    <input type="text" class="form-control" name="UserId" id="UserId" placeholder="User ID (10 characters or digits)" aria-label="User ID" aria-describedby="basic-addon1" maxlength="10" pattern="\d{10}" required>
+                 </div>
+            </div>
+            <!-- Password Input -->
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <span class="input-group-text bg-danger text-light"><i class="bi bi-key-fill"></i></span>
+                    <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                </div>
+            </div>
+            <!-- Role Dropdown -->
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <label class="input-group-text bg-info text-light" for="roleSelect"><i class="bi bi-person-fill-exclamation"></i></label>
+                    <select class="custom-select form-control" id="roleSelect" name="Role">
+                        <option value="admin">Admin</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="student">Student</option>
+                    </select>
+                </div>
+            </div>
+            <div id="errorMessage" class="text-danger"></div>
+                    @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                    {
+                        <div class="text-danger" role="alert">
+                            @foreach (var key in ViewData.ModelState.Keys)
+                            {
+                                foreach (var error in ViewData.ModelState[key].Errors)
+                                {
+                                            <p>@error.ErrorMessage</p>
+                                }
+                            }
+                        </div>
+                    }
+            <!-- Login Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary form-control">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+    function validateForm() {
+        var userId = document.getElementById("UserId").value;
+        var password = document.getElementById("Password").value;
+
+        // Validate user ID
+        if (!/^\d{10}$/.test(userId)) {
+            document.getElementById("errorMessage").innerHTML = "User ID must be 10 characters or digits.";
+            return false;
+        }
+
+        // Password validation can be added here if needed
+
+        // Clear error message
+        document.getElementById("errorMessage").innerHTML = "";
+        return true;
+    }
+</script>
+</html>
+
